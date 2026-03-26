@@ -1,38 +1,37 @@
-## UC3: Display "Hello" with Command-Line Argument or Default Message
+## UC5: Display "Hello" with Enhanced For Loop
 
 ### Description
-The app greets with a provided name or defaults to "World" if none is given.
+Uses an enhanced for loop to iterate through multiple names.
+Defaults to "Hello, World!" when no arguments are given.
 
-### Disadvantages of UC2
-UC2 crashes with ArrayIndexOutOfBoundsException if no argument is supplied.
-UC3 fixes this with defensive default handling.
+### Disadvantages of UC4
+UC4 used String.join() which hides the iteration logic.
+UC5 makes the loop explicit using an enhanced for loop,
+which is cleaner than a traditional indexed for loop.
 
 ### Preconditions
-- App is launched with or without a command-line argument
+- App is launched with zero or more command-line arguments
 
 ### Main Flow
-1. User runs: `java HelloApp John` or `java HelloApp`
-2. App checks if `args.length > 0`
-3. If yes → use `args[0]` as name; if no → use `"World"`
-4. App prints `Hello, <name>!`
-5. App terminates
+1. User runs: `java HelloApp Alice Bob Charlie` or `java HelloApp`
+2. If `args.length == 0` → print `Hello, World!`
+3. If args exist → iterate with enhanced for loop
+4. Build comma-separated names using StringBuilder
+5. Print `Hello, <names>!`
+6. App terminates
 
 ### Postconditions
-- Greeting shown with provided name or default "World"
+- Greeting shown with all names or defaults to "World"
 
 ### Example Output
-| Input                 | Output           |
-|-----------------------|------------------|
-| `java HelloApp Alice` | `Hello, Alice!`  |
-| `java HelloApp`       | `Hello, World!`  |
-
-### Key Code
-String name = (args.length > 0) ? args[0] : "World";
+| Input                             | Output                        |
+|-----------------------------------|-------------------------------|
+| `java HelloApp Alice Bob Charlie` | `Hello, Alice, Bob, Charlie!` |
+| `java HelloApp Alice`             | `Hello, Alice!`               |
+| `java HelloApp`                   | `Hello, World!`               |
 
 ### Concepts Learned
-- **Ternary operator** – `condition ? valueIfTrue : valueIfFalse`
-- **Default values** – fallback when input is missing
-- **Array length checking** – validate before accessing elements
-- **Defensive programming** – anticipate and handle edge cases
-- **Operator overloading** – `+` concatenates strings, adds numbers
-- **Program flexibility** – works with or without user input
+- **Enhanced for loop** – `for (String name : args)` cleaner iteration
+- **StringBuilder** – efficient string building without multiple objects
+- **Conditional delimiter** – avoids trailing commas
+- **Default handling** – graceful behavior when no input given
